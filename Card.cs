@@ -5,6 +5,7 @@ using System.Text;
 /**
  * Класс Card представляет собой карточку которая содержит иностранное слово и перевод к ниму с другой стороны.
  * Так же карточка хронит прогресс которого добился пользоватьель в изученнии данного слова.
+ * И конечно же номер колоды в которой на данный момент находится карточка.
  */
 namespace Crucify_Word
 {
@@ -13,12 +14,15 @@ namespace Crucify_Word
         public Card(ForeignWord cardWord, string selectTranslation)
         {
             this.id = 0; // придумать как получать новые айдишники.
+            this.packNumber = 0;
             this.cardWord = cardWord;
             this.selectTranslation = selectTranslation;
             this.cardWord.Translations.AddTranslationByWord(selectTranslation);
+            this.progress = 0;
         }
 
         private Int64 id;
+        private int packNumber;
         private ForeignWord cardWord;
         private string selectTranslation;
         private int progress;
@@ -49,6 +53,21 @@ namespace Crucify_Word
             {
                 this.progress--;
             }
+        }
+        public void toExplore()
+        {
+            this.packNumber = 0;
+            this.progress = 0;
+        }
+        public void markAsLearned()
+        {
+            this.packNumber = 11;
+            this.progress = 5;
+        }
+        public int PackNumber
+        {
+            get { return this.packNumber; }
+            set { this.packNumber = value; }
         }
     }
 }
