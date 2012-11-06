@@ -46,6 +46,26 @@ namespace Crucify_Word
             }
             return false;
         }
+        public bool AddTranslation(Translation trans)
+        {
+            Translation result = this.FindTranslationByWord(trans.Word);
+            if (null == result)
+            {
+                this.translations.Add(trans);
+                return true;
+            }
+            return false;
+        }
+        public bool RemoveTranslation(Translation trans)
+        {
+            Translation result = this.FindTranslationByWord(trans.Word);
+            if (null != result)
+            {
+                this.translations.Remove(result);
+                return true;
+            }
+            return false;
+        }
         /**
          * возвращает переменную типа Translation в случае успеха, в случае неудачи вернет null!!!
          */
