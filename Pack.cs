@@ -10,6 +10,11 @@ namespace Crucify_Word
 {
     public class Pack 
     {
+        public Pack(int packNumber)
+        {
+            this.packNumber = packNumber;
+            this.cardList = new CardList();
+        }
         protected int packNumber;
         protected CardList cardList;
         public int PackNumber
