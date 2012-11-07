@@ -29,6 +29,10 @@ namespace Crucify_Word
                 cards.Add(oldCard);
             }
         }
+        public List<Card> GetCards()
+        {
+            return this.cards.GetRange(0, this.cards.Count);
+        }
         private bool ExistCard(Card newCard)
         {
             return this.cards.Exists(
