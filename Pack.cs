@@ -29,5 +29,9 @@ namespace Crucify_Word
         {
             this.cardList.RemoveCard(oldCard);
         }
+        public List<Card> GetCards()
+        {
+            return this.cardList.GetCards();
+        }
     }
 }
