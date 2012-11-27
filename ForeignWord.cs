@@ -10,16 +10,16 @@ namespace Crucify_Word
 {
     public class ForeignWord
     {
-        const int VERB        = 1; // глагол
-        const int NOUN        = 2; // существительные
-        const int ARTICLE     = 3; // артикл
-        const int ADJECTIVE   = 4; // прилагательные
-        const int PRONOUN     = 5; // местоимения
-        const int NUMERAL     = 6; // числительные
-        const int ADVERB      = 7; // наречия
-        const int PREPOSITION = 8; // предлоги
-        const int CONJUNCTION = 9; // союзы
-        const int NOT_KNOW    = 10; // в случае если человек затрудняется выбрать
+        public const int VERB = 1; // глагол
+        public const int NOUN = 2; // существительные
+        public const int ARTICLE = 3; // артикл
+        public const int ADJECTIVE = 4; // прилагательные
+        public const int PRONOUN = 5; // местоимения
+        public const int NUMERAL = 6; // числительные
+        public const int ADVERB = 7; // наречия
+        public const int PREPOSITION = 8; // предлоги
+        public const int CONJUNCTION = 9; // союзы
+        public const int NOT_KNOW = 10; // в случае если человек затрудняется выбрать
 
         public ForeignWord(string word, string translation) : this(word, translation, String.Empty, ForeignWord.NOT_KNOW) { }
         public ForeignWord(string word, string translation, int partOfSpeech) : this(word, translation, String.Empty, partOfSpeech) { }
