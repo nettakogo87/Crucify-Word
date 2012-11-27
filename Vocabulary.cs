@@ -70,5 +70,15 @@ namespace Crucify_Word
         {
             return this.lessonPacks[lessonNumber].GetCards();
         }
+        public UInt64 GetCardsCount()
+        {
+            UInt64 cardsCount = (UInt64)this.repeatedPack.GetCards().Count;
+            cardsCount += (UInt64)this.removalPack.GetCards().Count;
+            for (int i = 0; i < Vocabulary.COUNT_OF_LESSONS; i++)
+            {
+                cardsCount += (UInt64)this.lessonPacks[i].GetCards().Count;
+            }
+            return cardsCount;
+        }
     }
 }
