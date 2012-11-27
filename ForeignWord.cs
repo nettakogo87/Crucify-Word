@@ -10,20 +10,35 @@ namespace Crucify_Word
 {
     public class ForeignWord
     {
-        public ForeignWord(string word, string translation):this(word, translation, String.Empty) {}
-        public ForeignWord(string word, string translation, string transcription)
+        const int VERB        = 1; // глагол
+        const int NOUN        = 2; // существительные
+        const int ARTICLE     = 3; // артикл
+        const int ADJECTIVE   = 4; // прилагательные
+        const int PRONOUN     = 5; // местоимения
+        const int NUMERAL     = 6; // числительные
+        const int ADVERB      = 7; // наречия
+        const int PREPOSITION = 8; // предлоги
+        const int CONJUNCTION = 9; // союзы
+        const int NOT_KNOW    = 10; // в случае если человек затрудняется выбрать
+
+        public ForeignWord(string word, string translation) : this(word, translation, String.Empty, ForeignWord.NOT_KNOW) { }
+        public ForeignWord(string word, string translation, int partOfSpeech) : this(word, translation, String.Empty, partOfSpeech) { }
+        public ForeignWord(string word, string translation, string transcription) : this(word, translation, transcription, ForeignWord.NOT_KNOW) { }
+        public ForeignWord(string word, string translation, string transcription, int partOfSpeech)
         {
             this.id = 0; // придумать очень сложный способ вычисления нового id
             this.word = word;
             this.transcription = transcription;
             Translation translationOfCard = new Translation(translation);
             this.translations = new TranslationList(translationOfCard);
+            this.partOfSpeech = partOfSpeech;
         }
 
         private Int64 id;
         private string word;
         private string transcription;
         private TranslationList translations;
+        private int partOfSpeech;
 
         public Int64 Id
         {
@@ -40,6 +55,10 @@ namespace Crucify_Word
         public TranslationList Translations
         {
             get { return translations; }
+        }
+        public int PartOfSpeech
+        {
+            get { return partOfSpeech; }
         }
     }
 }
