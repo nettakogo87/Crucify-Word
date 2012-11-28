@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 /**
- * Класс словаря, в нем хранятся калоды с карточками слов, которые изучает пользователь.
- * Пока можно добавить карточку или удалить, а еще получить список карточек по пренадлежности к колоде.
+ * Хранит все карточки пользователя
+ * Пока можно добавить карточку или удалить, а еще получить список карточек.
  * Но я думаю что в будуйщем через словарь можно будет добавлять новые слова не посредственно в "Хранилище слов"
  */
 namespace Crucify_Word
@@ -18,30 +18,17 @@ namespace Crucify_Word
         {
             this.id = 0; // ну как всегда придумать инкрементатор
             this.vocabularyName = vocabularyName;
-            this.lessonPacks = new LessonPack[Vocabulary.COUNT_OF_LESSONS];
-            // по простому заполняю номера занятий в конструкторе
-            this.lessonPacks[0] = new LessonPack(1, 3, 6, 10);
-            this.lessonPacks[1] = new LessonPack(2, 4, 7, 1);
-            this.lessonPacks[2] = new LessonPack(3, 5, 8, 2);
-            this.lessonPacks[3] = new LessonPack(4, 6, 9, 3);
-            this.lessonPacks[4] = new LessonPack(5, 7, 10, 4);
-            this.lessonPacks[5] = new LessonPack(6, 8, 1, 5);
-            this.lessonPacks[6] = new LessonPack(7, 9, 2, 6);
-            this.lessonPacks[7] = new LessonPack(8, 10, 3, 7);
-            this.lessonPacks[8] = new LessonPack(9, 1, 4, 8);
-            this.lessonPacks[9] = new LessonPack(10, 2, 5, 9);
-
-            this.repeatedPack = new Pack(Vocabulary.NUMBER_OF_REPEATED_PACK);
-            this.removalPack = new Pack(Vocabulary.NUMBER_OF_REMOVAL_PACK);
+            this.cards = new List<Card>();
         }
-
-        private Int64 id;
+        private List<Card> cards;
+        private int id;
         private string vocabularyName;
-        private Pack repeatedPack;
-        private Pack removalPack;
-        private LessonPack[] lessonPacks;
 
-        public Int64 Id
+        public List<Card> GetCards()
+        {
+            return this.cards.GetRange(0, this.cards.Count);
+        }
+        public int Id
         {
             get { return this.id; }
         }
@@ -52,33 +39,51 @@ namespace Crucify_Word
         }
         public void AddCardToVocabulary(Card newCard)
         {
-            this.repeatedPack.AddCard(newCard);
+            if (!this.ExistCard(newCard))
+            {
+                cards.Add(newCard);
+            }
         }
         public void DelCardFromVocabulary(Card badCard)
         {
-
-        }
-        public List<Card> GetRepeatedCards()
-        {
-            return this.repeatedPack.GetCards();
-        }
-        public List<Card> GetRemovalCards()
-        {
-            return this.removalPack.GetCards();
-        }
-        public List<Card> GetCarsByLessonNumber(int lessonNumber)
-        {
-            return this.lessonPacks[lessonNumber].GetCards();
-        }
-        public UInt64 GetCardsCount()
-        {
-            UInt64 cardsCount = (UInt64)this.repeatedPack.GetCards().Count;
-            cardsCount += (UInt64)this.removalPack.GetCards().Count;
-            for (int i = 0; i < Vocabulary.COUNT_OF_LESSONS; i++)
+            if (this.ExistCard(badCard))
             {
-                cardsCount += (UInt64)this.lessonPacks[i].GetCards().Count;
+                cards.Remove(badCard);
             }
-            return cardsCount;
+        }
+        public int GetCardsCount()
+        {
+            return cards.Count;
+        }
+
+
+        // приватные методы 
+        private bool ExistCard(Card newCard)
+        {
+            return this.cards.Exists(
+                delegate(Card card)
+                {
+                    return card.CardWord.Word == newCard.CardWord.Word && card.SelectTranslation == newCard.SelectTranslation;
+                }
+            );
+        }
+        private bool ExistCard(string word, string translation)
+        {
+            return this.cards.Exists(
+                delegate(Card card)
+                {
+                    return card.CardWord.Word == word && card.SelectTranslation == translation;
+                }
+            );
+        }
+        private bool ExistCard(string word, Translation translation)
+        {
+            return this.cards.Exists(
+                delegate(Card card)
+                {
+                    return card.CardWord.Word == word && card.SelectTranslation == translation.Word;
+                }
+            );
         }
     }
 }
