@@ -34,17 +34,18 @@ namespace Crucify_Word
 
         private void wordListToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.wordDataGridView.Rows.Clear();
             if (0 < this.myVocabulary.GetCardsCount())
             {
-                for (UInt64 i = 0; i < this.myVocabulary.GetCardsCount(); i++)
+                List<Card> cards = this.myVocabulary.GetCards();
+                for (int i = 0; i < this.myVocabulary.GetCardsCount(); i++)
                 {
-                    string foreignWord = 
-                    this.wordDataGridView.Rows.Add("five", "", "пять", "3");
+                    Card card = cards[i];
+                    this.wordDataGridView.Rows.Add(card.CardWord.Word, card.CardWord.Transcription, card.SelectTranslation, card.Progress);
                 }
             }
             this.addWordPanel.Visible = false;
             this.vocabularyPanel.Visible = true;
-
         }
 
         private void addWordButton_Click(object sender, EventArgs e)
