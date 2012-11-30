@@ -17,7 +17,6 @@ namespace Crucify_Word
         {
             this.myVocabulary = new Vocabulary("MyVocabulary");
             InitializeComponent();
-            this.addPartOfSpeechComboBox.SelectedIndex = ForeignWord.NOT_KNOW - 1;
         }
 
         private void wordTranslateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -29,7 +28,6 @@ namespace Crucify_Word
         {
             this.vocabularyPanel.Visible = false;
             this.addWordPanel.Visible = true;
-            this.addPartOfSpeechComboBox.SelectedIndex = ForeignWord.NOT_KNOW - 1;
         }
 
         private void wordListToolStripMenuItem_Click(object sender, EventArgs e)
@@ -37,11 +35,11 @@ namespace Crucify_Word
             this.wordDataGridView.Rows.Clear();
             if (0 < this.myVocabulary.GetCardsCount())
             {
-                List<Card> cards = this.myVocabulary.GetCards();
-                for (int i = 0; i < this.myVocabulary.GetCardsCount(); i++)
+                List<Card> cards = this.myVocabulary.GetAllCards();
+                for (int i = 0; i < cards.Count; i++)
                 {
                     Card card = cards[i];
-                    this.wordDataGridView.Rows.Add(card.CardWord.Word, card.CardWord.Transcription, card.SelectTranslation, card.Progress);
+                    this.wordDataGridView.Rows.Add(card.ForeignWord, card.Transcription, card.Translation, card.Progress);
                 }
             }
             this.addWordPanel.Visible = false;
@@ -51,24 +49,14 @@ namespace Crucify_Word
         private void addWordButton_Click(object sender, EventArgs e)
         {
             // а так же проверить нет ли уже карточки с этим словом в словаре.
-            ForeignWord newForeignWord;
-            string newWord = addWordTextBox.Text.ToLower();
+            string newWord = addWordTextBox.Text.ToLower().Trim();
             string transcription = addTranscriptionTextBox.Text.ToLower().Trim();
-            string translation = addTranslationTextBox.Text.ToLower();
-            if ("" == transcription)
-            {
-                newForeignWord = new ForeignWord(newWord, translation, this.addPartOfSpeechComboBox.SelectedIndex + 1);
-            }
-            else 
-            {
-                newForeignWord = new ForeignWord(newWord, translation, transcription, this.addPartOfSpeechComboBox.SelectedIndex + 1);
-            }
-            Card newCard = new Card(newForeignWord, translation);
+            string translation = addTranslationTextBox.Text.ToLower().Trim();
+            Card newCard = new Card(newWord, transcription, translation);
             this.myVocabulary.AddCardToVocabulary(newCard);
             this.addWordTextBox.Clear();
             this.addTranscriptionTextBox.Clear();
             this.addTranslationTextBox.Clear();
-            this.addPartOfSpeechComboBox.SelectedIndex = ForeignWord.NOT_KNOW - 1;
         }
         // проверяет заполнены ли поля "слово" и "перевод", если да - кнока "добавить" становится видима
         private void addWordTextBox_TextChanged(object sender, EventArgs e)
