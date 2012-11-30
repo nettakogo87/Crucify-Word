@@ -17,44 +17,56 @@ namespace Crucify_Word
         public const int PACKS_COUNT = 7; // колод повторения всего 7, не считая колоды изьятия
         public const int PROGRESS_MAX = 6; // максимальный прогресс при котором слово считается изученным
 
-        public Card()
+        public Card(string foreignWord, string translation)
+            : this(foreignWord, String.Empty, translation)
         {
-            this.id = 0;
-            this.packNumber = 0;
-            this.cardWord = new ForeignWord();
-            this.selectTranslation = "";
-            this.progress = 0;
+        }
+        public Card(string foreignWord, string transcription, string translation)
+        {
+            this.id = fake_id++;
+            this.packNumber = Convert.ToInt16(DateTime.Now.DayOfWeek) + 1; // номера колод соответствуют дням недели
+            this.foreignWord = foreignWord;
+            this.transcription = transcription;
+            this.translation = translation;
+            this.progress = 1;
             this.lastRepeating = DateTime.Now;
             this.newRepeating = DateTime.Now;
         }
-        public Card(ForeignWord cardWord, string selectTranslation)
+        // Этот конструктор мне потребуется когда я буду загружать данные карточек и создавать по ним сами карточки
+        public Card(string foreignWord, string transcription, string translation, int id)
         {
-            this.id = fake_id++; // придумать как получать новые айдишники.
+            this.id = id;
             this.packNumber = Convert.ToInt16(DateTime.Now.DayOfWeek) + 1; // номера колод соответствуют дням недели
-            this.cardWord = cardWord;
-            this.selectTranslation = selectTranslation;
-            this.cardWord.Translations.AddTranslationByWord(selectTranslation);
+            this.foreignWord = foreignWord;
+            this.transcription = transcription;
+            this.translation = translation;
             this.progress = 1;
             this.lastRepeating = DateTime.Now;
             this.newRepeating = DateTime.Now;
         }
         private static int fake_id;
-        private Int64 id;
+        private int id;
         private int packNumber;
-        private ForeignWord cardWord;
-        private string selectTranslation;
+        private string foreignWord;
+        private string transcription;
+        private string translation;
         private int progress;
         private DateTime lastRepeating;
         private DateTime newRepeating;
 
-        public ForeignWord CardWord
+        public string ForeignWord
         {
-            get { return this.cardWord; }
+            get { return this.foreignWord; }
         }
-        public string SelectTranslation
+        public string Transcription
         {
-            get { return this.selectTranslation; }
-            set { this.selectTranslation = value; }
+            get { return this.transcription; }
+            set { this.transcription = value; }
+        }
+        public string Translation
+        {
+            get { return this.translation; }
+            set { this.translation = value; }
         }
         public int Progress
         {
@@ -110,35 +122,6 @@ namespace Crucify_Word
                 this.newRepeating = DateTime.Now;
                 this.packNumber = Convert.ToInt16(DateTime.Now.DayOfWeek) + 1; // номера колод соответствуют дням недели;
             }
-        }
-
-        public void save()
-        {
-            FileInfo newWordDoc = new FileInfo(@"voc\cards\" + this.cardWord.Word + this.id + ".txt");
-            StreamWriter sw = newWordDoc.CreateText();
-            sw.WriteLine(this.id);
-            sw.WriteLine(this.packNumber);
-            sw.WriteLine(this.selectTranslation);
-            sw.WriteLine(this.progress);
-            sw.WriteLine(this.lastRepeating);
-            sw.WriteLine(this.newRepeating);
-            sw.WriteLine(this.cardWord.Id);
-            this.cardWord.save();
-            sw.Close();
-        }
-        public void load(string wordAndId)
-        {
-            FileInfo newWordDoc = new FileInfo(wordAndId);
-            StreamReader sw = newWordDoc.OpenText();
-            this.id = Convert.ToInt16(sw.ReadLine());
-            this.packNumber = Convert.ToInt16(sw.ReadLine());
-            this.selectTranslation = sw.ReadLine();
-            this.progress = Convert.ToInt16(sw.ReadLine());
-            this.lastRepeating = Convert.ToDateTime(sw.ReadLine());
-            this.newRepeating = Convert.ToDateTime(sw.ReadLine());
-            sw.Close();
-            this.cardWord = new ForeignWord();
-            this.cardWord.load(sw.ReadLine());
         }
     }
 }
