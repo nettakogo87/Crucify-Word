@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 /**
  * Класс Card представляет собой карточку которая содержит иностранное слово и перевод к ниму с другой стороны.
  * Так же карточка хронит прогресс которого добился пользоватьель в изученнии данного слова.
@@ -15,6 +16,17 @@ namespace Crucify_Word
     {
         public const int PACKS_COUNT = 7; // колод повторения всего 7, не считая колоды изьятия
         public const int PROGRESS_MAX = 6; // максимальный прогресс при котором слово считается изученным
+
+        public Card()
+        {
+            this.id = 0;
+            this.packNumber = 0;
+            this.cardWord = new ForeignWord();
+            this.selectTranslation = "";
+            this.progress = 0;
+            this.lastRepeating = DateTime.Now;
+            this.newRepeating = DateTime.Now;
+        }
         public Card(ForeignWord cardWord, string selectTranslation)
         {
             this.id = fake_id++; // придумать как получать новые айдишники.
@@ -98,6 +110,35 @@ namespace Crucify_Word
                 this.newRepeating = DateTime.Now;
                 this.packNumber = Convert.ToInt16(DateTime.Now.DayOfWeek) + 1; // номера колод соответствуют дням недели;
             }
+        }
+
+        public void save()
+        {
+            FileInfo newWordDoc = new FileInfo(@"voc\cards\" + this.cardWord.Word + this.id + ".txt");
+            StreamWriter sw = newWordDoc.CreateText();
+            sw.WriteLine(this.id);
+            sw.WriteLine(this.packNumber);
+            sw.WriteLine(this.selectTranslation);
+            sw.WriteLine(this.progress);
+            sw.WriteLine(this.lastRepeating);
+            sw.WriteLine(this.newRepeating);
+            sw.WriteLine(this.cardWord.Id);
+            this.cardWord.save();
+            sw.Close();
+        }
+        public void load(string wordAndId)
+        {
+            FileInfo newWordDoc = new FileInfo(wordAndId);
+            StreamReader sw = newWordDoc.OpenText();
+            this.id = Convert.ToInt16(sw.ReadLine());
+            this.packNumber = Convert.ToInt16(sw.ReadLine());
+            this.selectTranslation = sw.ReadLine();
+            this.progress = Convert.ToInt16(sw.ReadLine());
+            this.lastRepeating = Convert.ToDateTime(sw.ReadLine());
+            this.newRepeating = Convert.ToDateTime(sw.ReadLine());
+            sw.Close();
+            this.cardWord = new ForeignWord();
+            this.cardWord.load(sw.ReadLine());
         }
     }
 }
