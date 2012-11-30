@@ -23,7 +23,7 @@ namespace Crucify_Word
         }
         public Card(string foreignWord, string transcription, string translation)
         {
-            this.id = fake_id++;
+            this.id = ++inc_id;
             this.packNumber = Convert.ToInt16(DateTime.Now.DayOfWeek) + 1; // номера колод соответствуют дням недели
             this.foreignWord = foreignWord;
             this.transcription = transcription;
@@ -33,18 +33,18 @@ namespace Crucify_Word
             this.newRepeating = DateTime.Now;
         }
         // Этот конструктор мне потребуется когда я буду загружать данные карточек и создавать по ним сами карточки
-        public Card(string foreignWord, string transcription, string translation, int id)
+        public Card(string foreignWord, string transcription, string translation, string packNumber, string progress, string id, string lastRepeating, string newRepeating)
         {
-            this.id = id;
-            this.packNumber = Convert.ToInt16(DateTime.Now.DayOfWeek) + 1; // номера колод соответствуют дням недели
             this.foreignWord = foreignWord;
             this.transcription = transcription;
             this.translation = translation;
-            this.progress = 1;
-            this.lastRepeating = DateTime.Now;
-            this.newRepeating = DateTime.Now;
+            this.packNumber = Convert.ToInt16(packNumber);
+            this.progress = Convert.ToInt16(progress);
+            this.id = Convert.ToInt16(id);
+            this.lastRepeating = Convert.ToDateTime(lastRepeating);
+            this.newRepeating = Convert.ToDateTime(newRepeating);
         }
-        private static int fake_id;
+        public static int inc_id;
         private int id;
         private int packNumber;
         private string foreignWord;
