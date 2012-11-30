@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 /**
  * TranslationList создан для того что бы инкапсулировать то как хранятся переводы. 
  * Может быть придется отказаться от List...
@@ -66,6 +67,26 @@ namespace Crucify_Word
             }
             return false;
         }
+
+        public void save()
+        {
+            foreach(Translation tr in this.translations)
+            {
+                tr.save();
+            }
+        }
+
+        public void load()
+        {
+            DirectoryInfo translatDir = new DirectoryInfo(@"voc\translations");
+            for (int i = 0; i < translatDir.GetFiles().Length; i++)
+            {
+                Translation translation = new Translation();
+                translation.load(translatDir.GetFiles()[i].Name);
+                this.translations.Add(translation);
+            }
+        }
+
         /**
          * возвращает переменную типа Translation в случае успеха, в случае неудачи вернет null!!!
          */
