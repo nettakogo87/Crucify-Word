@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.trainingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wordTranslateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,8 +47,6 @@
             this.addTranslationTextBox = new System.Windows.Forms.TextBox();
             this.addWordTipLabel = new System.Windows.Forms.Label();
             this.addWordPanel = new System.Windows.Forms.Panel();
-            this.addPartOfSPeechLabel = new System.Windows.Forms.Label();
-            this.addPartOfSpeechComboBox = new System.Windows.Forms.ComboBox();
             this.addWordButton = new System.Windows.Forms.Button();
             this.vocabularyPanel = new System.Windows.Forms.Panel();
             this.wordDataGridView = new System.Windows.Forms.DataGridView();
@@ -185,8 +183,6 @@
             // 
             // addWordPanel
             // 
-            this.addWordPanel.Controls.Add(this.addPartOfSPeechLabel);
-            this.addWordPanel.Controls.Add(this.addPartOfSpeechComboBox);
             this.addWordPanel.Controls.Add(this.addWordButton);
             this.addWordPanel.Controls.Add(this.addWordTipLabel);
             this.addWordPanel.Controls.Add(this.addTranslationTextBox);
@@ -197,46 +193,14 @@
             this.addWordPanel.Controls.Add(this.addWordLabel);
             this.addWordPanel.Location = new System.Drawing.Point(118, 46);
             this.addWordPanel.Name = "addWordPanel";
-            this.addWordPanel.Size = new System.Drawing.Size(518, 324);
+            this.addWordPanel.Size = new System.Drawing.Size(518, 271);
             this.addWordPanel.TabIndex = 8;
-            // 
-            // addPartOfSPeechLabel
-            // 
-            this.addPartOfSPeechLabel.AutoSize = true;
-            this.addPartOfSPeechLabel.Font = new System.Drawing.Font("Arial", 14F);
-            this.addPartOfSPeechLabel.Location = new System.Drawing.Point(38, 220);
-            this.addPartOfSPeechLabel.Name = "addPartOfSPeechLabel";
-            this.addPartOfSPeechLabel.Size = new System.Drawing.Size(108, 22);
-            this.addPartOfSPeechLabel.TabIndex = 10;
-            this.addPartOfSPeechLabel.Text = "Часть речи";
-            // 
-            // addPartOfSpeechComboBox
-            // 
-            this.addPartOfSpeechComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.addPartOfSpeechComboBox.Font = new System.Drawing.Font("Arial", 14F);
-            this.addPartOfSpeechComboBox.FormattingEnabled = true;
-            this.addPartOfSpeechComboBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.addPartOfSpeechComboBox.Items.AddRange(new object[] {
-            "глаголы",
-            "существительные",
-            "артикли",
-            "прилагательные",
-            "местоимения",
-            "числительные",
-            "наречия",
-            "предлоги",
-            "союзы",
-            "..."});
-            this.addPartOfSpeechComboBox.Location = new System.Drawing.Point(193, 220);
-            this.addPartOfSpeechComboBox.Name = "addPartOfSpeechComboBox";
-            this.addPartOfSpeechComboBox.Size = new System.Drawing.Size(248, 30);
-            this.addPartOfSpeechComboBox.TabIndex = 9;
             // 
             // addWordButton
             // 
             this.addWordButton.Enabled = false;
             this.addWordButton.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addWordButton.Location = new System.Drawing.Point(42, 265);
+            this.addWordButton.Location = new System.Drawing.Point(193, 214);
             this.addWordButton.Name = "addWordButton";
             this.addWordButton.Size = new System.Drawing.Size(137, 35);
             this.addWordButton.TabIndex = 8;
@@ -273,9 +237,9 @@
             // 
             // wordColumn
             // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            this.wordColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
+            this.wordColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.wordColumn.HeaderText = "Слово";
             this.wordColumn.MinimumWidth = 100;
             this.wordColumn.Name = "wordColumn";
@@ -285,9 +249,9 @@
             // 
             // transcriptionColumn
             // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(2);
-            this.transcriptionColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(2);
+            this.transcriptionColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.transcriptionColumn.HeaderText = "Транскрипция";
             this.transcriptionColumn.MinimumWidth = 100;
             this.transcriptionColumn.Name = "transcriptionColumn";
@@ -297,9 +261,9 @@
             // 
             // translationColumn
             // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            this.translationColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(2);
+            this.translationColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.translationColumn.HeaderText = "Перевод";
             this.translationColumn.MinimumWidth = 100;
             this.translationColumn.Name = "translationColumn";
@@ -309,9 +273,9 @@
             // 
             // progressColumn
             // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(2);
-            this.progressColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(2);
+            this.progressColumn.DefaultCellStyle = dataGridViewCellStyle8;
             this.progressColumn.HeaderText = "Прогресс";
             this.progressColumn.MinimumWidth = 100;
             this.progressColumn.Name = "progressColumn";
@@ -366,8 +330,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn transcriptionColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn translationColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn progressColumn;
-        private System.Windows.Forms.Label addPartOfSPeechLabel;
-        private System.Windows.Forms.ComboBox addPartOfSpeechComboBox;
     }
 }
 
