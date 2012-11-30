@@ -11,31 +11,22 @@ namespace Crucify_Word
 {
     public class Vocabulary
     {
-        public const int NUMBER_OF_REPEATED_PACK = 0;
-        public const int NUMBER_OF_REMOVAL_PACK = 11;
-        public const int COUNT_OF_LESSONS = 10;
         public Vocabulary(string vocabularyName)
         {
-            this.id = 0; // ну как всегда придумать инкрементатор
             this.vocabularyName = vocabularyName;
             this.cards = new List<Card>();
         }
         private List<Card> cards;
-        private int id;
         private string vocabularyName;
 
-        public List<Card> GetCards()
-        {
-            return this.cards.GetRange(0, this.cards.Count);
-        }
-        public int Id
-        {
-            get { return this.id; }
-        }
         public string VocabularyName
         {
-            set { this.vocabularyName = value;}
+            set { this.vocabularyName = value; }
             get { return this.vocabularyName; }
+        }
+        public List<Card> GetAllCards()
+        {
+            return this.cards.GetRange(0, this.cards.Count);
         }
         public void AddCardToVocabulary(Card newCard)
         {
@@ -44,7 +35,7 @@ namespace Crucify_Word
                 cards.Add(newCard);
             }
         }
-        public void DelCardFromVocabulary(Card badCard)
+        public void RemoveCardFromVocabulary(Card badCard)
         {
             if (this.ExistCard(badCard))
             {
@@ -53,9 +44,8 @@ namespace Crucify_Word
         }
         public int GetCardsCount()
         {
-            return cards.Count;
+            return this.cards.Count;
         }
-
 
         // приватные методы 
         private bool ExistCard(Card newCard)
@@ -63,7 +53,7 @@ namespace Crucify_Word
             return this.cards.Exists(
                 delegate(Card card)
                 {
-                    return card.CardWord.Word == newCard.CardWord.Word && card.SelectTranslation == newCard.SelectTranslation;
+                    return card.ForeignWord == newCard.ForeignWord && card.Translation == newCard.Translation;
                 }
             );
         }
@@ -72,16 +62,7 @@ namespace Crucify_Word
             return this.cards.Exists(
                 delegate(Card card)
                 {
-                    return card.CardWord.Word == word && card.SelectTranslation == translation;
-                }
-            );
-        }
-        private bool ExistCard(string word, Translation translation)
-        {
-            return this.cards.Exists(
-                delegate(Card card)
-                {
-                    return card.CardWord.Word == word && card.SelectTranslation == translation.Word;
+                    return card.ForeignWord == word && card.Translation == translation;
                 }
             );
         }
