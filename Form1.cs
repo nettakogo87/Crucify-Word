@@ -16,6 +16,7 @@ namespace Crucify_Word
         public Form1()
         {
             this.myVocabulary = new Vocabulary("MyVocabulary");
+            this.myVocabulary.InitVocabulary();
             InitializeComponent();
         }
 
@@ -54,6 +55,7 @@ namespace Crucify_Word
             string translation = addTranslationTextBox.Text.ToLower().Trim();
             Card newCard = new Card(newWord, transcription, translation);
             this.myVocabulary.AddCardToVocabulary(newCard);
+            this.myVocabulary.saveCardById(newCard.Id);
             this.addWordTextBox.Clear();
             this.addTranscriptionTextBox.Clear();
             this.addTranslationTextBox.Clear();
