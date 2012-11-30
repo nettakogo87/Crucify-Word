@@ -29,6 +29,20 @@ namespace Crucify_Word
         {
             return this.cards.GetRange(0, this.cards.Count);
         }
+        public List<Card> GetCardsForLesson()
+        {
+            List<Card> cardsForLesson = new List<Card>();
+            foreach (Card card in this.cards)
+            {
+                if (card.NewRepeating.Date == DateTime.Now.Date)
+                {
+                    cardsForLesson.Add(card);
+                }
+            }
+            return cardsForLesson;
+        }
+
+
         public void AddCardToVocabulary(Card newCard)
         {
             if (!this.ExistCard(newCard))
