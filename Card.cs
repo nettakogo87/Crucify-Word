@@ -54,6 +54,10 @@ namespace Crucify_Word
         private DateTime lastRepeating;
         private DateTime newRepeating;
 
+        public int Id
+        {
+            get { return this.id; }
+        }
         public string ForeignWord
         {
             get { return this.foreignWord; }
@@ -68,9 +72,17 @@ namespace Crucify_Word
             get { return this.translation; }
             set { this.translation = value; }
         }
-        public int Progress
+        public int Progress 
         {
             get { return this.progress; }
+        }
+        public DateTime LastRepeating
+        {
+            get { return this.lastRepeating; }
+        }
+        public DateTime NewRepeating
+        {
+            get { return this.newRepeating; }
         }
         public void IncrementProgress()
         {
