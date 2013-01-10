@@ -11,15 +11,12 @@ namespace Crucify_Word.DomainLayer
 {
     public class Card
     {
-        public const int PROGRESS_MAX = 6; // максимальный прогресс при котором слово считается изученным
-
         public Card(int id, string foreignWord, string transcription, string translation)
         {
             this.Id = id;
             this.ForeignWord = foreignWord;
             this.Transcription = transcription;
             this.Translation = translation;
-            this.Progress = 0;
         }
         public int Id { get; set; }
 
@@ -28,7 +25,5 @@ namespace Crucify_Word.DomainLayer
         public string Transcription { get; set; }
 
         public string Translation { get; set; }
-
-        public int Progress { get; set; }
     }
 }
