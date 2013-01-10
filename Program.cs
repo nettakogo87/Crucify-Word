@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using Crucify_Word.BusinessLayer;
+using Crucify_Word.DomainLayer;
 
 namespace Crucify_Word
 {
@@ -16,7 +18,13 @@ namespace Crucify_Word
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            MainWindow view = new MainWindow();
+            view.Visible = false;
+            List<Card> cards = new List<Card>();
+            CardsController cardsController = new CardsController(view, cards);
+            cardsController.LoadAllCards();
+            cardsController.LoadView();
+            Application.Run(view);
         }
     }
 }
