@@ -42,8 +42,8 @@ namespace Crucify_Word
             string foreignWord   = this.textBoxForeignWord.Text.Trim();
             string transcription = this.textBoxTranscription.Text.Trim();
             string translation   = this.textBoxTranslation.Text.Trim();
-            int id = Convert.ToInt32(this.textBoxId.Text.Trim());
-            _controller.CreateCard(id, foreignWord, transcription, translation);
+//            int id = Convert.ToInt32(this.textBoxId.Text.Trim());
+            _controller.CreateCard(foreignWord, transcription, translation);
         }
 
         private void buttonRemoveCard_Click(object sender, System.EventArgs e)

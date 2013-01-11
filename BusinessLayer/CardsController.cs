@@ -18,8 +18,9 @@ namespace Crucify_Word.BusinessLayer
             _cards = cards;
             _cardsView.SetController(this);
         }
-        public void CreateCard(int id, string foreignWord, string transcription, string translation)
+        public void CreateCard(string foreignWord, string transcription, string translation)
         {
+            int id = CreateID();
             Card newCard = new Card(id, foreignWord, transcription, translation);
             _cards.Add(newCard);
             SaveCardById(id);
@@ -70,6 +71,7 @@ namespace Crucify_Word.BusinessLayer
                     {
                         saveWord.Delete();
                     }
+                    _cards.Remove(card);
                     break;
                 }
             }
@@ -84,6 +86,18 @@ namespace Crucify_Word.BusinessLayer
             _cardsView.ClearGrid();
             foreach (Card card in _cards)
                 _cardsView.AddCardToGrid(card);
+        }
+        public int CreateID()
+        {
+            int maxID = 0;
+            foreach (var card in _cards)
+            {
+                if (card.Id > maxID)
+                {
+                    maxID = card.Id;
+                }
+            }
+            return maxID + 1;
         }
     }
 }

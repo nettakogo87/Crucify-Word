@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBoxAddCard = new System.Windows.Forms.GroupBox();
-            this.textBoxId = new System.Windows.Forms.TextBox();
-            this.labelId = new System.Windows.Forms.Label();
             this.buttonAddCard = new System.Windows.Forms.Button();
             this.textBoxTranslation = new System.Windows.Forms.TextBox();
             this.textBoxTranscription = new System.Windows.Forms.TextBox();
@@ -52,8 +50,6 @@
             // 
             // groupBoxAddCard
             // 
-            this.groupBoxAddCard.Controls.Add(this.textBoxId);
-            this.groupBoxAddCard.Controls.Add(this.labelId);
             this.groupBoxAddCard.Controls.Add(this.buttonAddCard);
             this.groupBoxAddCard.Controls.Add(this.textBoxTranslation);
             this.groupBoxAddCard.Controls.Add(this.textBoxTranscription);
@@ -68,25 +64,9 @@
             this.groupBoxAddCard.TabStop = false;
             this.groupBoxAddCard.Text = "Добавить Слово";
             // 
-            // textBoxId
-            // 
-            this.textBoxId.Location = new System.Drawing.Point(716, 30);
-            this.textBoxId.Name = "textBoxId";
-            this.textBoxId.Size = new System.Drawing.Size(100, 20);
-            this.textBoxId.TabIndex = 8;
-            // 
-            // labelId
-            // 
-            this.labelId.AutoSize = true;
-            this.labelId.Location = new System.Drawing.Point(694, 33);
-            this.labelId.Name = "labelId";
-            this.labelId.Size = new System.Drawing.Size(19, 14);
-            this.labelId.TabIndex = 7;
-            this.labelId.Text = "ID:";
-            // 
             // buttonAddCard
             // 
-            this.buttonAddCard.Location = new System.Drawing.Point(393, 71);
+            this.buttonAddCard.Location = new System.Drawing.Point(694, 27);
             this.buttonAddCard.Name = "buttonAddCard";
             this.buttonAddCard.Size = new System.Drawing.Size(130, 23);
             this.buttonAddCard.TabIndex = 6;
@@ -228,8 +208,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBoxAddCard;
-        private System.Windows.Forms.TextBox textBoxId;
-        private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.Button buttonAddCard;
         private System.Windows.Forms.TextBox textBoxTranslation;
         private System.Windows.Forms.TextBox textBoxTranscription;
