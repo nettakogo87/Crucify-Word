@@ -145,6 +145,7 @@
             // 
             // dataGridViewCards
             // 
+            this.dataGridViewCards.AllowUserToAddRows = false;
             this.dataGridViewCards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCards.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,

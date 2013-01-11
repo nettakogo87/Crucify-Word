@@ -42,8 +42,11 @@ namespace Crucify_Word
             string foreignWord   = this.textBoxForeignWord.Text.Trim();
             string transcription = this.textBoxTranscription.Text.Trim();
             string translation   = this.textBoxTranslation.Text.Trim();
-//            int id = Convert.ToInt32(this.textBoxId.Text.Trim());
             _controller.CreateCard(foreignWord, transcription, translation);
+            this.textBoxForeignWord.Clear();
+            this.textBoxTranscription.Clear();
+            this.textBoxTranslation.Clear();
+            SelectingRow();
         }
 
         private void buttonRemoveCard_Click(object sender, System.EventArgs e)
@@ -56,11 +59,20 @@ namespace Crucify_Word
                     this.dataGridViewCards.Rows.RemoveAt(i);
                 }
             }
+            SelectingRow();
         }
 
         private void dataGridViewCards_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            SelectingRow();
+        }
+        public void SelectingRow()
+        {
             int i = dataGridViewCards.SelectedCells[0].RowIndex;
+            dataGridViewCards.Rows[i].Selected = true;
+        }
+        public void SelectingRow(int i)
+        {
             dataGridViewCards.Rows[i].Selected = true;
         }
     }

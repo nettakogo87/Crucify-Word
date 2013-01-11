@@ -86,6 +86,7 @@ namespace Crucify_Word.BusinessLayer
             _cardsView.ClearGrid();
             foreach (Card card in _cards)
                 _cardsView.AddCardToGrid(card);
+            _cardsView.SelectingRow(0); // выделит первую страку( для красявасти)
         }
         public int CreateID()
         {
