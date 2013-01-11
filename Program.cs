@@ -22,6 +22,7 @@ namespace Crucify_Word
             view.Visible = false;
             List<Card> cards = new List<Card>();
             CardsController cardsController = new CardsController(view, cards);
+            cardsController.CreateVocabulary();
             cardsController.LoadAllCards();
             cardsController.LoadView();
             Application.Run(view);

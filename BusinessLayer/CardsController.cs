@@ -86,7 +86,10 @@ namespace Crucify_Word.BusinessLayer
             _cardsView.ClearGrid();
             foreach (Card card in _cards)
                 _cardsView.AddCardToGrid(card);
-            _cardsView.SelectingRow(0); // выделит первую страку( для красявасти)
+            if (0 < _cards.Count)
+            {
+                _cardsView.SelectingRow(0); // выделит первую страку( для красявасти)
+            }
         }
         public int CreateID()
         {
@@ -99,6 +102,14 @@ namespace Crucify_Word.BusinessLayer
                 }
             }
             return maxID + 1;
+        }
+        public void CreateVocabulary()
+        {
+            DirectoryInfo vocabulary = new DirectoryInfo(@"vocabulary\cards\");
+            if (!vocabulary.Exists)
+            {
+                vocabulary.Create();
+            }
         }
     }
 }
