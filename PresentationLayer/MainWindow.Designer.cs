@@ -1,4 +1,4 @@
-﻿namespace Crucify_Word
+﻿namespace Crucify_Word.PresentationLayer
 {
     partial class MainWindow
     {
