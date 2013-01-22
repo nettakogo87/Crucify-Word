@@ -20,11 +20,14 @@ namespace Crucify_Word
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        public void SetController(CardsController controller)
-        {
-            _controller = controller;
+            _controller = new CardsController(this);
+            List<Card> cards = new List<Card>();
+            cards = _controller.GetAllCards();
+            foreach (Card card in cards)
+            {
+                AddCardToGrid(card);
+            }
         }
 
         public void ClearGrid()
@@ -43,6 +46,8 @@ namespace Crucify_Word
             string transcription = this.textBoxTranscription.Text.Trim();
             string translation   = this.textBoxTranslation.Text.Trim();
             _controller.CreateCard(foreignWord, transcription, translation);
+            string id = _controller.GetAllCards().ElementAt(_controller.GetAllCards().Count() - 1).Id.ToString();
+            this.dataGridViewCards.Rows.Add(id, foreignWord, transcription, translation);
             this.textBoxForeignWord.Clear();
             this.textBoxTranscription.Clear();
             this.textBoxTranslation.Clear();

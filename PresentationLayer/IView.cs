@@ -9,7 +9,6 @@ namespace Crucify_Word.PresentationLayer
 {
     public interface IView
     {
-        void SetController(CardsController controller);
         void ClearGrid();
         void AddCardToGrid(Card card);
         void SelectingRow(int i);

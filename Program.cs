@@ -19,12 +19,6 @@ namespace Crucify_Word
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             MainWindow view = new MainWindow();
-            view.Visible = false;
-            List<Card> cards = new List<Card>();
-            CardsController cardsController = new CardsController(view, cards);
-            cardsController.CreateVocabulary();
-            cardsController.LoadAllCards();
-            cardsController.LoadView();
             Application.Run(view);
         }
     }

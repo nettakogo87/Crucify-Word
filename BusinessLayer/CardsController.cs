@@ -12,11 +12,12 @@ namespace Crucify_Word.BusinessLayer
     {
         private IView _cardsView;
         private List<Card> _cards;
-        public CardsController(IView view, List<Card> cards)
+        public CardsController(IView view)
         {
             _cardsView = view;
-            _cards = cards;
-            _cardsView.SetController(this);
+            CreateVocabulary();
+            _cards = new List<Card>();
+            LoadAllCards();
         }
         public void CreateCard(string foreignWord, string transcription, string translation)
         {
@@ -24,7 +25,6 @@ namespace Crucify_Word.BusinessLayer
             Card newCard = new Card(id, foreignWord, transcription, translation);
             _cards.Add(newCard);
             SaveCardById(id);
-            _cardsView.AddCardToGrid(newCard);
         }
 
         public void LoadAllCards()
@@ -37,7 +37,6 @@ namespace Crucify_Word.BusinessLayer
                 StreamReader sr = loadWord.OpenText();
                 Card newCard = new Card(Convert.ToInt32(sr.ReadLine()), sr.ReadLine(), sr.ReadLine(), sr.ReadLine());
                 _cards.Add(newCard);
-                _cardsView.AddCardToGrid(newCard);
                 sr.Close();
             }
         }
@@ -81,16 +80,7 @@ namespace Crucify_Word.BusinessLayer
         {
             return _cards;
         }
-        public void LoadView()
-        {
-            _cardsView.ClearGrid();
-            foreach (Card card in _cards)
-                _cardsView.AddCardToGrid(card);
-            if (0 < _cards.Count)
-            {
-                _cardsView.SelectingRow(0); // выделит первую страку( для красявасти)
-            }
-        }
+
         public int CreateID()
         {
             int maxID = 0;
